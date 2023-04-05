@@ -2,8 +2,8 @@
 #let problem_counter = counter("problem")
 
 #let prob(body) = {
-  let current_problem = problem_counter.step()
-  [== Problem #problem_counter.display() #current_problem]
+  // let current_problem = problem_counter.step()
+  [== Problem #problem_counter.step() #problem_counter.display()]
   block(fill:rgb(250, 255, 250),
    width: 100%,
    inset:8pt,
@@ -26,6 +26,9 @@
     header: locate( 
         loc => if (
             counter(page).at(loc).first()==1) { none } 
+        else if (counter(page).at(loc).first()==2) { align(right, 
+              [*#author* | *#course_id: #title* | *Problem 1*]
+            ) }
         else { 
             align(right, 
               [*#author* | *#course_id: #title* | *Problem #problem_counter.at(loc).first()*]
